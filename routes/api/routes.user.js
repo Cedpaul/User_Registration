@@ -24,4 +24,11 @@ router.post('/', (req, res) => {
 });
 
 
+router.delete('/:id', (req, res) => {
+    User.findById(req.params.id)
+    .then((user) => user.remove().then(() => res.json({ sucess: true })))
+    .catch((err) => res.status(404).json({ sucesss: false }))
+});
+
+
 module.exports = router;
