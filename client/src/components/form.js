@@ -12,7 +12,7 @@ const Form = () => {
            <form onSubmit={onSubmit}>
                  <div className="form-group">
                          <label htmlFor="text"> First Name: </label>
-                         <input className="form-control" {...register('fName', { required: true })} name="fname"></input>
+                         <input className="form-control" {...register('fName', { required: true })} name="fName"></input>
 
                          <label htmlFor="text"> Middle Name: </label>
                          <input className="form-control" {...register('mName', { required: true })} name="mName"></input>
