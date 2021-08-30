@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
-const UserList = () => {
-    const [items, setItems] = useState([]);
+import { useHistory } from 'react-router';
+
+const UserList = (props) => {
+    const {userInformation, deleteUser, getUserInfo} = props;
+    const history = useHistory();
 
     return (
         <div>
@@ -18,12 +21,24 @@ const UserList = () => {
                 </thead>
                 <tbody>
                 {
-                items.map((user) => (
+                userInformation.map((user) => (
                     <tr key={user._id}>
-                    <td>{user.text}</td>
-                    <td>{user.description}</td>
+                    <td>{user.firstName}</td>
+                    <td>{user.middleName}</td>
                     <td>
-                        <Link to={`/edit/${user._id}`}>Edit</Link>
+                        <Link onClick={() => {getUserInfo({
+                                _id: user._id,
+                                firstName: user.firstName,
+                                middleName: user.middleName,
+                                lastName: user.lastName,
+                                age: user.age,
+                                stAddress: user.stAddress,
+                                city: user.city,
+                                phoneNumber: user.phoneNumber
+                            }); history.push('/edit')} }>Edit</Link>
+                    </td>
+                    <td>
+                    <Link onClick={() => {deleteUser(user._id)}}>Delete</Link>
                     </td>
                     </tr>
                 ))}
