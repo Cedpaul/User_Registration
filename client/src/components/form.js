@@ -1,10 +1,13 @@
 import { useForm } from "react-hook-form";
-const Form = () => {
+
+const Form = (props) => {
+
+    const {insertToDB} = props;
 
     const {register, handleSubmit} = useForm();
 
     const onSubmit = handleSubmit((data) => {
-        alert(JSON.stringify(data))
+        insertToDB(data);
     })
 
     return (
@@ -21,7 +24,7 @@ const Form = () => {
                          <input className="form-control" {...register('lName', { required: true })} name="lName"></input>
 
                          <label htmlFor="text"> Age: </label>
-                         <input className="form-control" {...register('age', { required: true })} name="age"></input>
+                         <input type= "number"className="form-control" {...register('age', { required: true })} name="age"></input>
 
                          <label htmlFor="text"> Street Address: </label>
                          <input className="form-control" {...register('stAdd', { required: true })} name="stAdd"></input>
@@ -35,7 +38,7 @@ const Form = () => {
                      </div>
                      <div className="form-group">
                         <button type="submit" className="btn btn-primary">
-                            Save Todo
+                            Save user
                         </button>
                      </div>
                  </form>
